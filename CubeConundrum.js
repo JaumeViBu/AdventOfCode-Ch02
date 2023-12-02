@@ -64,17 +64,25 @@ function getMinCubesForGame(game) {
   return res;
 }
 
+function getPowerOfSetCubes(game) {
+
+  const minCubes = getMinCubesForGame(game);
+  const res = minCubes.minimumCubes.r * minCubes.minimumCubes.g * minCubes.minimumCubes.b;
+  return res;
+}
+
 module.exports.getGamesLogsFromFile = getGamesLogsFromFile;
 module.exports.parseGameInfo = parseGameInfo;
 module.exports.getSetFromString = getSetFromString;
 module.exports.isGamePossible = isGamePossible;
 module.exports.sumIdsListOfGames = sumIdsListOfGames;
 module.exports.getMinCubesForGame = getMinCubesForGame;
+module.exports.getPowerOfSetCubes = getPowerOfSetCubes;
 
 /*******************************************************************************/
 
-const INPUTFILE = './test-input.txt';
-// const INPUTFILE = './input.txt';
+// const INPUTFILE = './test-input.txt';
+const INPUTFILE = './input.txt';
 const GAMECONDITION = { r: 12, g: 13, b: 14 };
 
 function main() {
@@ -86,7 +94,7 @@ function main() {
 
     game = parseGameInfo(game);
     gameList.push(game);
-    console.log(getMinCubesForGame(game))
+    console.log(getPowerOfSetCubes(game))
     if (isGamePossible(game, GAMECONDITION)) possibleGames.push(game);
   }
   console.log(`Sum: ${sumIdsListOfGames(possibleGames)}`);
