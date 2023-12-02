@@ -94,10 +94,12 @@ function main() {
 
     game = parseGameInfo(game);
     gameList.push(game);
-    console.log(getPowerOfSetCubes(game))
+    // console.log(getPowerOfSetCubes(game))
     if (isGamePossible(game, GAMECONDITION)) possibleGames.push(game);
   }
   console.log(`Sum: ${sumIdsListOfGames(possibleGames)}`);
+  console.log(`Sum minCubes: ${gameList.reduce((acc, game) => acc + getPowerOfSetCubes(game), 0)}`)
+
 }
 
 main();
