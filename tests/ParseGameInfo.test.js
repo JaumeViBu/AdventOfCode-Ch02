@@ -1,4 +1,4 @@
-const parseGameInfo = require('../CubeConundrum').parseGameInfo;
+import { parseGameInfo } from '../CubeConundrum';
 
 test('Can get info of first game of test-input.txt', () => {
 

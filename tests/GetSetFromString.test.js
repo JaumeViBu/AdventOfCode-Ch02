@@ -1,4 +1,4 @@
-const getSetFromString = require('../CubeConundrum').getSetFromString;
+import { getSetFromString } from '../CubeConundrum';
 
 test('Can get set results object from test-input test', () => {
 

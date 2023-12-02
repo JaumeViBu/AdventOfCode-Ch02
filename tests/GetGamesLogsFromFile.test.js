@@ -1,4 +1,4 @@
-const getGamesLogsFromFile = require('../CubeConundrum').getGamesLogsFromFile;
+import { getGamesLogsFromFile } from "../CubeConundrum";
 
 test('Can get game logs from test-input file', () => {
   const inputPath = './test-input.txt';

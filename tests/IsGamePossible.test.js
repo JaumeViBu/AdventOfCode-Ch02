@@ -1,4 +1,4 @@
-const isGamePossible = require('../CubeConundrum').isGamePossible;
+import { isGamePossible } from '../CubeConundrum';
 
 test('Can check if first game of test-input.txt is possible', () => {
   const givenData = [

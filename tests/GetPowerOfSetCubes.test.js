@@ -1,4 +1,4 @@
-const getPowerOfSetCubes = require('../CubeConundrum').getPowerOfSetCubes;
+import { getPowerOfSetCubes } from "../CubeConundrum";
 
 test('Can get the power of the set of cubes of the games in test-input.txt', () => {
 
