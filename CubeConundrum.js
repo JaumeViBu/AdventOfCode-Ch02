@@ -52,27 +52,44 @@ function sumIdsListOfGames(list) {
   return list.reduce((acc, game) => acc + game.id, 0);
 }
 
+function getMinCubesForGame(game) {
+  const res = { id: game.id, minimumCubes: { r: 0, g: 0, b: 0 } };
+
+  for (const set of game.sets) {
+
+    if (set.r > res.minimumCubes.r) res.minimumCubes.r = set.r;
+    if (set.g > res.minimumCubes.g) res.minimumCubes.g = set.g;
+    if (set.b > res.minimumCubes.b) res.minimumCubes.b = set.b;
+  }
+  return res;
+}
+
 module.exports.getGamesLogsFromFile = getGamesLogsFromFile;
 module.exports.parseGameInfo = parseGameInfo;
 module.exports.getSetFromString = getSetFromString;
 module.exports.isGamePossible = isGamePossible;
 module.exports.sumIdsListOfGames = sumIdsListOfGames;
+module.exports.getMinCubesForGame = getMinCubesForGame;
 
 /*******************************************************************************/
 
 const INPUTFILE = './test-input.txt';
+// const INPUTFILE = './input.txt';
 const GAMECONDITION = { r: 12, g: 13, b: 14 };
 
 function main() {
 
   const games = getGamesLogsFromFile(INPUTFILE);
   const possibleGames = [];
+  const gameList = [];
   for (let game of games) {
 
     game = parseGameInfo(game);
+    gameList.push(game);
+    console.log(getMinCubesForGame(game))
     if (isGamePossible(game, GAMECONDITION)) possibleGames.push(game);
   }
-  console.log(JSON.stringify(possibleGames));
+  console.log(`Sum: ${sumIdsListOfGames(possibleGames)}`);
 }
 
 main();
