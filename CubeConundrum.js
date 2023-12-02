@@ -35,12 +35,28 @@ function getSetFromString(str) {
 }
 
 function isGamePossible(game, condition) {
+  // console.log(`Game id: ${game.id}`);
+  // console.log(`Condition: ${JSON.stringify(condition).replace(/[{}"]/g, '').replace(/[:]/g, ': ').replace(/[,]/g, ', ')}`);
+  for (const set of game.sets) {
 
+    // console.log(set);
+    if (set.r > condition.r) return false;
+    if (set.g > condition.g) return false;
+    if (set.b > condition.b) return false;
+  }
+  return true;
+}
+
+function sumIdsListOfGames(list) {
+
+  return list.reduce((acc, game) => acc + game.id, 0);
 }
 
 module.exports.getGamesLogsFromFile = getGamesLogsFromFile;
 module.exports.parseGameInfo = parseGameInfo;
 module.exports.getSetFromString = getSetFromString;
+module.exports.isGamePossible = isGamePossible;
+module.exports.sumIdsListOfGames = sumIdsListOfGames;
 
 /*******************************************************************************/
 
@@ -50,13 +66,13 @@ const GAMECONDITION = { r: 12, g: 13, b: 14 };
 function main() {
 
   const games = getGamesLogsFromFile(INPUTFILE);
-  const possibleGameIds = [];
+  const possibleGames = [];
   for (let game of games) {
 
     game = parseGameInfo(game);
-    if (isGamePossible(game, GAMECONDITION)) possibleGameIds.push(game.id);
+    if (isGamePossible(game, GAMECONDITION)) possibleGames.push(game);
   }
-  console.log(possibleGameIds);
+  console.log(JSON.stringify(possibleGames));
 }
 
 main();
