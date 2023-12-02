@@ -35,11 +35,9 @@ function getSetFromString(str) {
 }
 
 function isGamePossible(game, condition) {
-  // console.log(`Game id: ${game.id}`);
-  // console.log(`Condition: ${JSON.stringify(condition).replace(/[{}"]/g, '').replace(/[:]/g, ': ').replace(/[,]/g, ', ')}`);
+
   for (const set of game.sets) {
 
-    // console.log(set);
     if (set.r > condition.r) return false;
     if (set.g > condition.g) return false;
     if (set.b > condition.b) return false;
@@ -81,7 +79,6 @@ module.exports.getPowerOfSetCubes = getPowerOfSetCubes;
 
 /*******************************************************************************/
 
-// const INPUTFILE = './test-input.txt';
 const INPUTFILE = './input.txt';
 const GAMECONDITION = { r: 12, g: 13, b: 14 };
 
@@ -94,7 +91,6 @@ function main() {
 
     game = parseGameInfo(game);
     gameList.push(game);
-    // console.log(getPowerOfSetCubes(game))
     if (isGamePossible(game, GAMECONDITION)) possibleGames.push(game);
   }
   console.log(`Sum: ${sumIdsListOfGames(possibleGames)}`);
