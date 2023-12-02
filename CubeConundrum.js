@@ -1,6 +1,6 @@
-const fs = require('fs');
+import * as fs from 'fs'
 
-function parseGameInfo(gameLog) {
+export function parseGameInfo(gameLog) {
   const gameInfo = {};
   const logSplit = gameLog.split(':');
   gameInfo.id = Number.parseInt(logSplit[0].split(' ')[1]);
@@ -12,12 +12,12 @@ function parseGameInfo(gameLog) {
   return gameInfo;
 }
 
-function getGamesLogsFromFile(path) {
+export function getGamesLogsFromFile(path) {
 
   return fs.readFileSync(path, { encoding: 'utf-8' }).split('\r\n');
 }
 
-function getSetFromString(str) {
+export function getSetFromString(str) {
 
   const drawSet = { r: 0, g: 0, b: 0 };
   for (const cubeDraw of str.split(',')) {
@@ -34,7 +34,7 @@ function getSetFromString(str) {
   return drawSet;
 }
 
-function isGamePossible(game, condition) {
+export function isGamePossible(game, condition) {
   // console.log(`Game id: ${game.id}`);
   // console.log(`Condition: ${JSON.stringify(condition).replace(/[{}"]/g, '').replace(/[:]/g, ': ').replace(/[,]/g, ', ')}`);
   for (const set of game.sets) {
@@ -47,12 +47,12 @@ function isGamePossible(game, condition) {
   return true;
 }
 
-function sumIdsListOfGames(list) {
+export function sumIdsListOfGames(list) {
 
   return list.reduce((acc, game) => acc + game.id, 0);
 }
 
-function getMinCubesForGame(game) {
+export function getMinCubesForGame(game) {
   const res = { id: game.id, minimumCubes: { r: 0, g: 0, b: 0 } };
 
   for (const set of game.sets) {
@@ -64,20 +64,12 @@ function getMinCubesForGame(game) {
   return res;
 }
 
-function getPowerOfSetCubes(game) {
+export function getPowerOfSetCubes(game) {
 
   const minCubes = getMinCubesForGame(game);
   const res = minCubes.minimumCubes.r * minCubes.minimumCubes.g * minCubes.minimumCubes.b;
   return res;
 }
-
-module.exports.getGamesLogsFromFile = getGamesLogsFromFile;
-module.exports.parseGameInfo = parseGameInfo;
-module.exports.getSetFromString = getSetFromString;
-module.exports.isGamePossible = isGamePossible;
-module.exports.sumIdsListOfGames = sumIdsListOfGames;
-module.exports.getMinCubesForGame = getMinCubesForGame;
-module.exports.getPowerOfSetCubes = getPowerOfSetCubes;
 
 /*******************************************************************************/
 
@@ -85,7 +77,7 @@ module.exports.getPowerOfSetCubes = getPowerOfSetCubes;
 const INPUTFILE = './input.txt';
 const GAMECONDITION = { r: 12, g: 13, b: 14 };
 
-function main() {
+export function main() {
 
   const games = getGamesLogsFromFile(INPUTFILE);
   const possibleGames = [];
