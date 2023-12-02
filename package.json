@@ -1,0 +1,21 @@
+{
+  "name": "day-02",
+  "version": "1.0.0",
+  "description": "day 02 of advent of code 2023",
+  "main": "CubeConundrum.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "tdd",
+    "jest",
+    "js",
+    "adventOfCode",
+    "2023"
+  ],
+  "author": "Jaume Vidal",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
